@@ -407,7 +407,7 @@ jobs:
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v4
         with:
-         name: AnyKernel3_${{ github.event.inputs.kernelsu_variant }}_${{ env.KSUVER }}_${{ github.event.inputs.FEIL }}_${{ env.BUILD_TIME }}
+         name: AnyKernel3_SukiSU-Ultra_${{ env.KSUVER }}_${{ github.event.inputs.FEIL }}_${{ env.BUILD_TIME }}
          path: ./AnyKernel3/*
 
 
@@ -424,7 +424,6 @@ jobs:
             - 编译时间: ${{ env.BUILD_TIME }}
             - 内核版本: ${{ env.KSUVER }}
             - KernelSource: ${{ github.event.inputs.FEIL }}
-            - 69_hide_stuff: ${{ github.event.inputs.hide_stuff }} 
             - SUSFS：1.5.7
             - 推荐管理器：[SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra/releases)
 
