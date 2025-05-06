@@ -36,10 +36,14 @@ on:
           - gki
           - perf
       SUSFS_CI:
-        type: boolean
-        description: "SUSFS模块下载是否调用CI？"
+        description: "SUSFS模块下载？"
         required: true
-        default: false
+        type: choice
+        options:
+          - CI
+          - Realse
+          - NO
+        default: 'gt6'
       VFS:
         type: boolean
         description: "是否启用手动钩子？"
@@ -366,7 +370,7 @@ jobs:
 
       # 下载 SUSFS 模块（CI）
       - name: Download Latest SUSFS Module from CI
-        if: ${{ github.event.inputs.SUSFS_CI == 'true' }}
+        if: ${{ github.event.inputs.SUSFS_CI == 'CI' }}
         run: |
           LATEST_RUN_ID=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/sidex15/susfs4ksu-module/actions/runs?status=success" | \
@@ -385,7 +389,7 @@ jobs:
 
       # 下载 SUSFS 模块（Release）
       - name: Download Latest SUSFS Module from Release
-        if: ${{ github.event.inputs.SUSFS_CI == 'false' }}
+        if: ${{ github.event.inputs.SUSFS_CI == 'Realse' }}
         run: |
           wget https://github.com/sidex15/ksu_module_susfs/releases/latest/download/ksu_module_susfs_1.5.2+.zip
           cp ksu_module_susfs_1.5.2+.zip ./AnyKernel3/
@@ -403,12 +407,11 @@ jobs:
           clean_feil="${clean_feil%_u}"  # 去掉结尾的 _u（如果有）
           echo "value=$clean_feil" >> $GITHUB_OUTPUT
 
-         
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v4
         with:
-         name: AnyKernel3_SukiSU-Ultra_${{ env.KSUVER }}_${{ github.event.inputs.FEIL }}_${{ env.BUILD_TIME }}
-         path: ./AnyKernel3/*
+          name: AnyKernel3_SukiSUUltra_${{ env.KSUVER }}_${{ steps.feil_clean.outputs.value }}${{ steps.suffix.outputs.value }}_${{ env.BUILD_TIME }}
+          path: ./AnyKernel3/*
 
 
       - name: 创建发布
@@ -424,7 +427,7 @@ jobs:
             - 编译时间: ${{ env.BUILD_TIME }}
             - 内核版本: ${{ env.KSUVER }}
             - KernelSource: ${{ github.event.inputs.FEIL }}
-            - SUSFS：1.5.7
+            - SUSFS: 1.5.7
             - 推荐管理器：[SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra/releases)
 
           draft: false
