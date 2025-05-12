@@ -435,7 +435,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "${{ needs.build.outputs.ksuver }}_${{ github.event.inputs.FEIL }}_${{ env.BUILD_TIME }}"
+          tag_name: "${{ env.KSUVER }}_${{ github.event.inputs.FEIL }}_${{ env.BUILD_TIME }}"
           name: "Realme${{ github.event.inputs.FEIL }} Build ${{ github.run_number }}"
           body: |
             编译 SukiSU-Ultra 内核
