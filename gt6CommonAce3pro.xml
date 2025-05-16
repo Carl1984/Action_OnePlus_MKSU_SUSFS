@@ -5,7 +5,7 @@
   <remote fetch="https://github.com/OnePlusOSS" name="origin"/>
   <remote fetch="https://github.com/realme-kernel-opensource" name="realme"/>
   <remote fetch="https://github.com/Carl1984" name="Carl1984"/>
-  <project remote="origin" name="android_kernel_common_oneplus_sm8650" path="kernel_platform/common" revision="oneplus/sm8650_v_15.0.0_oneplus12" clone-depth="1">
+  <project remote="origin" name="android_kernel_common_oneplus_sm8650" path="kernel_platform/common" revision="oneplus/sm8650_v_15.0.0_ace_3_pro" clone-depth="1">
     <linkfile dest="kernel_platform/.source_date_epoch_dir" src="."/>
   </project>
   <project remote="realme" name="realme_GT6-AndroidV-kernel-source-" path="kernel_platform/msm-kernel" revision="master" clone-depth="1">
