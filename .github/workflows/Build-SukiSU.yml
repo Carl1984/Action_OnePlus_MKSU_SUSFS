@@ -10,6 +10,7 @@ on:
           - gt5pro
           - gt6kgt5v
           - gt6
+          - gt6CommonAce3pro
         default: 'gt6'
       CPUD:
         description: "处理器代号"
