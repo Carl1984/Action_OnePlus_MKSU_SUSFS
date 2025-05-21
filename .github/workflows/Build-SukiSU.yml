@@ -27,7 +27,7 @@ on:
       KERNEL_NAME:
         description: "修改内核名称"
         required: true
-        default: '-android14-11-o-carl'
+        default: '-android14-11-o-g4c9c8979e2a7'
       BUILD_METHOD:
         type: choice
         description: "编译方式"
@@ -310,8 +310,8 @@ jobs:
              sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl
            fi
            # sed -i '$s|echo "\$res"|echo "\${{ github.event.inputs.KERNEL_NAME }}${{ env.BUILD_TIME }}"|' ./common/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-android14-11-o-g4c9c8979e2a7"|' ./common/scripts/setlocalversion
-  
+          #sed -i '$s|echo "\$res"|echo "-android14-11-o-g4c9c8979e2a7"|' ./common/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "\${{ github.event.inputs.KERNEL_NAME }}"|' ./common/scripts/setlocalversion
       - name: Build kernel
         run: |
           cd kernel_workspace
