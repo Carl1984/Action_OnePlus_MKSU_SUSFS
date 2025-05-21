@@ -308,7 +308,8 @@ jobs:
            if [[ "${{ github.event.inputs.KERNEL_VERSION }}" == "6.1" || "${{ github.event.inputs.KERNEL_VERSION }}" == "6.6" ]]; then
              sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl
            fi
-           sed -i '$s|echo "\$res"|echo "\${{ github.event.inputs.KERNEL_NAME }}${{ env.BUILD_TIME }}"|' ./common/scripts/setlocalversion
+           # sed -i '$s|echo "\$res"|echo "\${{ github.event.inputs.KERNEL_NAME }}${{ env.BUILD_TIME }}"|' ./common/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "6.1.75-android14-11-o-g4c9c8979e2a7"|' ./common/scripts/setlocalversion
   
       - name: Build kernel
         run: |
