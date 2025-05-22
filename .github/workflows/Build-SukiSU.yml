@@ -253,15 +253,15 @@ jobs:
 
           # LZ4KD配置
           if [ "${{ github.event.inputs.ZRAM }}" = "true" ]; then
-          CONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
+            CONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
           
-          echo "CONFIG_ZSMALLOC=m" >> "$CONFIG_FILE"
-          if [  -e ./msm-kernel/modules.bzl ]; then
-            echo "CONFIG_ZSMALLOC=m" >> "msm-kernel/arch/arm64/configs/${{ github.event.inputs.CPUD }}-GKI.config"
-            echo "CONFIG_ZRAM=m" >> "msm-kernel/arch/arm64/configs/${{ github.event.inputs.CPUD }}-GKI.config"
-          fi
-              
-          echo "CONFIG_MODULE_SIG_FORCE=n" >> "$CONFIG_FILE"
+            echo "CONFIG_ZSMALLOC=m" >> "$CONFIG_FILE"
+            if [  -e ./msm-kernel/modules.bzl ]; then
+              echo "CONFIG_ZSMALLOC=m" >> "msm-kernel/arch/arm64/configs/${{ github.event.inputs.CPUD }}-GKI.config"
+              echo "CONFIG_ZRAM=m" >> "msm-kernel/arch/arm64/configs/${{ github.event.inputs.CPUD }}-GKI.config"
+            fi
+                
+            echo "CONFIG_MODULE_SIG_FORCE=n" >> "$CONFIG_FILE"
           
           #   if [ "${{ github.event.inputs.KERNEL_VERSION }}" = "5.10" ]; then
           #     echo "CONFIG_ZSMALLOC=y" >> "$CONFIG_FILE"
@@ -309,7 +309,7 @@ jobs:
           #     echo "CONFIG_CRYPTO_842=y" >> "$CONFIG_FILE"
           #     echo "CONFIG_ZRAM_WRITEBACK=y" >> "$CONFIG_FILE"
           #   fi
-          # fi
+          fi
 
 
       - name: Add make name
