@@ -252,7 +252,7 @@ jobs:
 
           # LZ4KD配置
           if [ "${{ github.event.inputs.ZRAM }}" = "true" ]; then
-          CONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
+          CONFIG_FILE=./arch/arm64/configs/gki_defconfig
 
             if [ "${{ github.event.inputs.KERNEL_VERSION }}" = "5.10" ]; then
               echo "CONFIG_ZSMALLOC=y" >> "$CONFIG_FILE"
