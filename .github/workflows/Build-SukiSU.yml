@@ -180,6 +180,11 @@ jobs:
           cp ../../SukiSU_patch/69_hide_stuff.patch ./
           echo "正在打隐藏应用补丁"
           patch -p1 -F 3 < 69_hide_stuff.patch
+
+          
+          # Add Pathc for lz4
+          patch -p1 < ../../.repo/manifests/patches/001-lz4.patch
+          patch -p1 < ../../.repo/manifests/patches/002-zstd.patch
          
       - name: Apply VFS
         run: |
@@ -242,17 +247,13 @@ jobs:
           echo "CONFIG_KSU_SUSFS_OPEN_REDIRECT=y" >> "$CONFIG_FILE"
           fi
 
-          # Add Pathc for lz4
-          cd ./common
-          patch -p1 < ../../.repo/manifests/patches/001-lz4.patch
-          patch -p1 < ../../.repo/manifests/patches/002-zstd.patch
 
           # Remove check_defconfig
-          sed -i 's/check_defconfig//' ./build.config.gki              
+          sed -i 's/check_defconfig//' ./common/build.config.gki             
 
           # LZ4KD配置
           if [ "${{ github.event.inputs.ZRAM }}" = "true" ]; then
-          CONFIG_FILE=./arch/arm64/configs/gki_defconfig
+          CONFIG_FILE=./common/arch/arm64/configs/gki_defconfig
 
             if [ "${{ github.event.inputs.KERNEL_VERSION }}" = "5.10" ]; then
               echo "CONFIG_ZSMALLOC=y" >> "$CONFIG_FILE"
@@ -300,7 +301,7 @@ jobs:
               echo "CONFIG_CRYPTO_842=y" >> "$CONFIG_FILE"
               echo "CONFIG_ZRAM_WRITEBACK=y" >> "$CONFIG_FILE"
             fi
-          fi 
+          fi
 
 
       - name: Add make name
