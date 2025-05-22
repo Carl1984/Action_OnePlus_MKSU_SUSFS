@@ -8,9 +8,9 @@ on:
         type: choice
         options:
           - gt5pro
-          - gt6kgt5v
           - gt6
           - gt6CommonAce3pro
+          - gt6CommonAce5
         default: 'gt6'
       CPUD:
         description: "处理器代号"
@@ -443,12 +443,14 @@ jobs:
           body: |
             编译 SukiSU-Ultra 内核
             - 机型： reamlme
-            - 特性：MKSU+SUSFS+VFS+KPM
+            - 特性：MKSU+SUSFS+VFS
+            - KPM：${{ github.event.inputs.KPM }}
             - 编译时间: ${{ env.BUILD_TIME }}
+            - KSU版本: ${{ github.event.inputs.KERNEL_VERSION }}${{ github.event.inputs.KERNEL_NAME }}
             - 内核版本: ${{ env.KSUVER }}
             - KernelSource: ${{ github.event.inputs.FEIL }}
             - SUSFS: 1.5.7
-            - 推荐管理器：[SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra/releases)
+            - 管理器：[SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra/releases)
 
           draft: false
           prerelease: false
