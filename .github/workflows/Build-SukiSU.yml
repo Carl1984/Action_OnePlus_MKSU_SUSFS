@@ -446,8 +446,8 @@ jobs:
             - 特性：MKSU+SUSFS+VFS
             - KPM：${{ github.event.inputs.KPM }}
             - 编译时间: ${{ env.BUILD_TIME }}
-            - KSU版本: ${{ github.event.inputs.KERNEL_VERSION }}${{ github.event.inputs.KERNEL_NAME }}
-            - 内核版本: ${{ env.KSUVER }}
+            - 内核版本: ${{ github.event.inputs.KERNEL_VERSION }}${{ github.event.inputs.KERNEL_NAME }}
+            - KSU版本: ${{ env.KSUVER }}
             - KernelSource: ${{ github.event.inputs.FEIL }}
             - SUSFS: 1.5.7
             - 管理器：[SukiSU-Ultra](https://github.com/ShirkNeko/SukiSU-Ultra/releases)
