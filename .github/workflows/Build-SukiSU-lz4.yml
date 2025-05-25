@@ -1,4 +1,4 @@
-name: Build Realme_Kernel
+name: Build Realme_Kernel to test lz4
 on:
   workflow_dispatch:
     inputs:
